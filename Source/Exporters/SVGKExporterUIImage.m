@@ -23,7 +23,10 @@
         if (@available(iOS 10.0, *)) {
             UIGraphicsImageRendererFormat * rendererFormat = [[UIGraphicsImageRendererFormat alloc] init];
             rendererFormat.opaque = NO;
+#if TARGET_OS_VISION
+#else
             rendererFormat.scale = [UIScreen mainScreen].scale;
+#endif
             
             UIGraphicsImageRenderer * render = [[UIGraphicsImageRenderer alloc] initWithSize:image.size format:rendererFormat];
             
