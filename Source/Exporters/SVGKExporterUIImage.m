@@ -38,7 +38,11 @@
             
             return result;
         } else {
-            UIGraphicsBeginImageContextWithOptions( image.size, FALSE, [UIScreen mainScreen].scale );
+#if TARGET_OS_VISION
+          UIGraphicsBeginImageContextWithOptions( image.size, FALSE, 0.0 );
+#else
+          UIGraphicsBeginImageContextWithOptions( image.size, FALSE, [UIScreen mainScreen].scale );
+#endif
             CGContextRef context = UIGraphicsGetCurrentContext();
             
             [image renderToContext:context antiAliased:shouldAntialias curveFlatnessFactor:multiplyFlatness interpolationQuality:interpolationQuality flipYaxis:FALSE];
