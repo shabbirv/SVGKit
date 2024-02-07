@@ -9,7 +9,7 @@
 #import "CALayerWithClipRender.h"
 #import "SVGKDefine.h"
 
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
 #import <UIKit/UIKit.h>
 #endif
 

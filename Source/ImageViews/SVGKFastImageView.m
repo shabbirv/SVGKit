@@ -69,7 +69,7 @@
     self.image = im;
     self.frame = CGRectMake( 0,0, im.size.width, im.size.height ); // NB: this uses the default SVG Viewport; an ImageView can theoretically calc a new viewport (but its hard to get right!)
     self.tileRatio = CGSizeZero;
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
     self.backgroundColor = [UIColor clearColor];
 #else
     self.layer.backgroundColor = [NSColor clearColor].CGColor;
@@ -166,7 +166,7 @@
 		/*SVGKitLogVerbose(@"transform changed. Setting layer scale: %2.2f --> %2.2f", self.layer.contentsScale, self.transform.a);
 		 self.layer.contentsScale = self.transform.a;*/
 		[self.image.CALayerTree removeFromSuperlayer]; // force apple to redraw?
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
 		[self setNeedsDisplay];
 #else
         [self setNeedsDisplay:YES];
@@ -179,7 +179,7 @@
 			;
 		else
 		{
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
 			[self setNeedsDisplay];
 #else
             [self setNeedsDisplay:YES];
@@ -288,7 +288,7 @@
 	
 	//DEBUG: SVGKitLogVerbose(@"cols, rows: %i, %i ... scaleConvert: %@ ... tilesize: %@", cols, rows, NSStringFromCGSize(scaleConvertImageToView), NSStringFromCGSize(tileSize) );
 	/** To support tiling, and to allow internal shrinking, we use renderInContext */
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
     CGContextRef context = UIGraphicsGetCurrentContext();
 #else
     CGContextRef context = SVGKGraphicsGetCurrentContext();

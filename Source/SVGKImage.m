@@ -76,7 +76,7 @@ static NSMutableDictionary* globalSVGKImageCache;
 {
 	if( self == [SVGKImage class]) // Have to protect against subclasses ADDITIONALLY calling this, as a "[super initialize] line
 	{
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarningOrBackgroundNotification:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarningOrBackgroundNotification:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 #endif
@@ -528,7 +528,7 @@ static NSMutableDictionary* globalSVGKImageCache;
 	NSAssert( FALSE, @"Method unsupported / not yet implemented by SVGKit" );
 }
 
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
 + (UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration  // read sequnce of files with suffix starting at 0 or 1
 {
 	NSAssert( FALSE, @"Method unsupported / not yet implemented by SVGKit" );

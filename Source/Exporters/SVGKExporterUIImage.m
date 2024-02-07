@@ -1,7 +1,7 @@
 #import "SVGKExporterUIImage.h"
 #import "SVGKDefine_Private.h"
 
-#if SVGKIT_UIKIT
+#if SVGKIT_UIKIT || TARGET_OS_VISION
 #import "SVGKImage+CGContext.h" // needed for Context calls
 
 @implementation SVGKExporterUIImage
